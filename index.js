@@ -2,6 +2,7 @@
 // The following are examples of some basic extension functionality
 
 //You'll likely need to import extension_settings, getContext, and loadExtensionSettings from extensions.js
+import { is_send_press } from "../../../../script.js";
 import { getContext } from "../../../extensions.js";
 
 //You'll likely need to import some other functions from the main script
@@ -48,6 +49,11 @@ function onButtonClick() {
   let character = characters[id];
   console.log(character, chat);
   let rate = $('#chat-rate-input').val();
+  
+  if(is_send_press) {
+    toastr.error('正在聊天中，请稍后评价');
+    return;
+  }
 
   if(!rate) {
     toastr.error('请填写评分');

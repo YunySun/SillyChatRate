@@ -1,0 +1,44 @@
+#chat-rate-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99999;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.8);
+}
+
+#chat-rate-wrapper h2 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+#chat-rate-wrapper input {
+    width: 100px;
+    font-size: 14px;
+    text-shadow: none;
+    color: #222;
+}
+
+#chat-rate-wrapper button {
+    font-size: 14px;
+    text-shadow: none;
+    color: #222;
+}
+
+#chat-rate-result {
+    height: 20px;
+}
+
+.space-between {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.res-export-warpper {
+    margin-top: 10px;
+}
+
+#chat-rate-export {
+    background-color: #fff;
+    border:none;
+}

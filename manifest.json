@@ -1,0 +1,10 @@
+{
+    "display_name": "Chat Rate",
+    "loading_order": 12,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "YunySun",
+    "version": "1.0.0"
+}

@@ -1,10 +1,11 @@
 #chat-rate-wrapper {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    left: 0;
+    top: 0;
     z-index: 99999;
     padding: 20px;
     background-color: rgba(0,0,0,0.8);
+    cursor: pointer;
 }
 
 #chat-rate-wrapper h2 {

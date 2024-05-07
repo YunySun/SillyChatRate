@@ -2,7 +2,7 @@
 // The following are examples of some basic extension functionality
 
 //You'll likely need to import extension_settings, getContext, and loadExtensionSettings from extensions.js
-import { is_send_press } from "../../../../script.js";
+import { getSettings, is_send_press, settings } from "../../../../script.js";
 import { getContext } from "../../../extensions.js";
 
 //You'll likely need to import some other functions from the main script
@@ -37,12 +37,12 @@ function onButtonInput(event) {
 }
 
 // This function is called when the button is clicked
-function onButtonClick() {
+async function onButtonClick() {
+  console.log('data: ', settings);
+  return;
   // You can do whatever you want here
   // Let's make a popup appear with the checked setting
   const context = getContext();
-  console.log(context.chat);
-  console.log(context.characters);
   let id = context.characterId;
   let chat = context.chat;
   let characters = context.characters;
@@ -150,6 +150,40 @@ jQuery(async () => {
   $("#chat-rate-button").on("click", onButtonClick);
   $("#chat-rate-input").on("input", onButtonInput);
   $('#chat-rate-export').on("click", onExportClick);
+
+  let chatRatePosition = localStorage.getItem('chat-rate-position');
+  let chatRatePositionLeft = $('#sheld').offset().left+$('#sheld').outerWidth()+20;
+  let chatRatePositionTop = $(window).height() - $('#chat-rate-wrapper').outerHeight() - 20;
+  if(chatRatePosition) {
+    let chatRatePositionJSON = JSON.parse(chatRatePosition);
+    chatRatePositionLeft = chatRatePositionJSON.left;
+    chatRatePositionTop = chatRatePositionJSON.top;
+  }
+  $('#chat-rate-wrapper').css({left: chatRatePositionLeft+'px', top: chatRatePositionTop+'px'})
+
+  $('#chat-rate-wrapper').draggable({
+    stop: function(event, ui) {
+      localStorage.setItem('chat-rate-position', JSON.stringify(ui.position));
+    }
+  });
+
+  // $('#chat-rate-wrapper').on('mousedown', function(e) {
+  //   const offsetX = e.clientX - $(this).offset().left;
+  //   const offsetY = e.clientY - $(this).offset().top;
+  //   console.log(offsetX, offsetY)
+
+  //   $(document).on('mousemove', function(event) {
+  //     const newX = event.clientX - offsetX;
+  //     const newY = event.clientY - offsetY;
+
+  //     $('#chat-rate-wrapper').css({ left: newX + 'px', top: newY + 'px' });
+  //   });
+
+  //   $(document).on('mouseup', function() {
+  //       $(document).off('mousemove');
+  //       $(document).off('mouseup');
+  //   });
+  // })
 
   // Load settings when starting things up (if you have any)
   // loadSettings();

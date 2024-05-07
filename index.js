@@ -93,7 +93,7 @@ async function onButtonClick() {
   }
 
   localStorage.setItem('rate_'+character.name, JSON.stringify(chat, null, 4));
-  $('#chat-rate-input').val('');
+  $('#chat-rate-input').val(5);
   toastr.success('评分成功');
   
 }

@@ -38,8 +38,6 @@ function onButtonInput(event) {
 
 // This function is called when the button is clicked
 async function onButtonClick() {
-  console.log('data: ', settings);
-  return;
   // You can do whatever you want here
   // Let's make a popup appear with the checked setting
   const context = getContext();

@@ -84,11 +84,9 @@ async function onButtonClick() {
   chat[chat.length-1].rate = rate;
 
   const rateList = chat.filter(chat => chat.hasOwnProperty('rate'))
-  console.log(rateList)
   if(rateList.length > 0) {
     const rateSum = rateList.reduce((acc, cur) => acc + +(cur.rate), 0);
     const averageRate = (rateSum / rateList.length).toFixed(1);
-    console.log(averageRate)
     $('#chat-rate-result').text(`当前评分:${averageRate}`);
   }
 
@@ -160,6 +158,27 @@ jQuery(async () => {
   $('#chat-rate-wrapper').css({left: chatRatePositionLeft+'px', top: chatRatePositionTop+'px'})
 
   $('#chat-rate-wrapper').draggable({
+    drag: function(event, ui) {
+      const draggableWidth = $(this).outerWidth();
+      const draggableHeight = $(this).outerHeight();
+      const parentWidth = $(window).width();
+      const parentHeight = $(window).height();
+
+      const maxX = parentWidth - draggableWidth;
+      const maxY = parentHeight - draggableHeight;
+
+      if (ui.position.left < 0) {
+          ui.position.left = 0;
+      } else if (ui.position.left > maxX) {
+          ui.position.left = maxX;
+      }
+
+      if (ui.position.top < 0) {
+          ui.position.top = 0;
+      } else if (ui.position.top > maxY) {
+          ui.position.top = maxY;
+      }
+    },
     stop: function(event, ui) {
       localStorage.setItem('chat-rate-position', JSON.stringify(ui.position));
     }
